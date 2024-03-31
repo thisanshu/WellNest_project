@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WellNest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="diet.css">
+</head>
+<body>
+    <header>
+        <h2 class="logo"> WellNest </h2>
+        <nav class="navigation">
+            <a href="/WellNest/WellNest.html"> Home </a>
+            <a href="/WellNest/dietplan.html"> Diet Plan</a>
+            <a href="/WellNest/service.html"> Services </a>
+            <a href="/WellNest/Psychology.html">Psychology</a>
+            <a href="/WellNest/aboutus.html">About Us</a>
+            <button class="btnLogin-popup"> Login</button>
+        </nav>
+    </header>
+        <div class="contain">
+            <div class="food">
+                <div class="overlay"></div>
+                <div class="banner-text">
+                    <h1 id="banner">"Let food be thy medicine and medicine be thy food."</h1>
+                    <h3 id="one">~Hippocrates</h3>
+                </div>
+            </div>
+        <h2 class="main-para">A nutritious and well-balanced diet is essential for maintaining both our physical and mental health. <br> On the other hand, diets heavy in processed foods, sweets, and bad fats have been connected to a higher risk of mental health conditions like anxiety, depression, and cognitive loss. People may fuel their brains and foster mental resilience by eating a diet high in nutrients and balanced in macronutrients. Additionally, a number of nutrients have been linked to a decrease in mental illness symptoms and an improvement in mood control, including magnesium, omega-3 fatty acids, and vitamins B and D. Even though diet alone may not be able to treat mental illness, it may be an important part of holistic treatment approaches that work in conjunction with other therapies like counseling and medicine. A balanced diet promotes mental clarity, emotional stability, and an overall higher quality of life in addition to physical health.</h2>
+        <br>
+        <div class="proofs">Processed foods and sugar can cause inflammation in the brain and throughout the body, which can aggravate mood disorders including sadness and anxiety. Processed meals are frequently what we turn to when we're anxious or sad and need a fast pick-me-up.The American Dietetic Association claims that when people are stressed or sad, they typically overeat or undereat.<br>The American Psychological Association claims that a variety of neurochemicals produced by gut bacteria are utilized by the brain to control many mental and physiological functions, including mood.</div>
+        
+        <div class="brain-food">
+            <h2 id="brf">Brain Food</h2>
+            <h4>The top three foods to incorporate into a healthy mental diet are :</h4>
+            <h4>Complex Carbohydrates: Foods high in starchy vegetables and brown grains offer a long-term supply of energy. Conversely, alternatives like quinoa, millet, beets, and sweet potatoes are higher in nutrients and provide sustained fullness than simple carbs found in candies and sugary foods.</h4>
+            <h4>Lean Proteins: In addition, they supply the energy required for quick decisions and activities. High-quality protein sources include fish, poultry, eggs, soybeans, almonds, and seeds.</h4>
+            <h4>Fatty Acids: For the nervous system and brain to function at their best, these nutrients are necessary. Seafood, meat, eggs, nuts, and flaxseeds are all abundant in them.</h4>
+        </div>
+        <h1 id="custom">Customize Your Diet Plan</h1>
+        <form id="diet-form">
+            <div class="category">
+                <h3>Breakfast</h3>
+                <input type="text" id="breakfast-input" oninput="filterItems('breakfast')" placeholder="Search breakfast items...">
+                <ul id="breakfast-items" class="foldable-list"></ul>
+                <button type="button" onclick="addToMeal('breakfast')">Add to Meal</button>
+            </div>
+            <div class="category">
+                <h3>Lunch</h3>
+                <input type="text" id="lunch-input" oninput="filterItems('lunch')" placeholder="Search lunch items...">
+                <ul id="lunch-items" class="foldable-list"></ul>
+                <button type="button" onclick="addToMeal('lunch')">Add to Meal</button>
+            </div>
+            <div class="category">
+                <h3>Dinner</h3>
+                <input type="text" id="dinner-input" oninput="filterItems('dinner')" placeholder="Search dinner items...">
+                <ul id="dinner-items" class="foldable-list"></ul>
+                <button type="button" onclick="addToMeal('dinner')">Add to Meal</button>
+            </div>
+            <h3>Meal Chart</h3>
+            <ul id="meal-chart">
+                <li class="category">
+                    <h4>Breakfast:</h4>
+                    <ul id="breakfast-chart"></ul>
+                </li>
+                <li class="category">
+                    <h4>Lunch:</h4>
+                    <ul id="lunch-chart"></ul>
+                </li>
+                <li class="category">
+                    <h4>Dinner:</h4>
+                    <ul id="dinner-chart"></ul>
+                </li>
+            </ul>
+            <button type="submit">Submit Diet Plan</button>
+        </form>
+    </div>
+        <div class="wrapper">
+            <span class="icon-close"><ion-icon name="close"></ion-icon>
+            </span>
+            <div class="form-box login">
+                <h2> Login </h2>
+                <form action="#">
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                        <input type="email" required>
+                        <label> Email </label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                        <input type="password" required>
+                        <label> Password </label>
+                    </div>
+                    <div class="remmember-forgot">
+                     <a href="#">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn"> Login </button>
+                    <div class="login-register">
+                        <p> Don't have an account?<a href="#" class="register-link"> Register </a></p>
+                    </div>
+                </form>
+            </div>
+            <div class="form-box register">
+                <h2> Registration </h2>
+                <form action="#">
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="person"></ion-icon></span>
+                        <input type="text" required>
+                        <label> Username </label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                        <input type="email" required>
+                        <label> Email </label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                        <input type="password" required>
+                        <label> Password </label>
+                    </div>
+                    <div class="remmember-forgot">
+                        <p> <label><input type="checkbox"> I agree to terms & conditions.</p> </label>
+                    </div>
+                    <button type="submit" class="btn"> Register </button>
+                    <div class="login-register">
+                        <p> Already have an account?<a href="#" class="register-link"> Login </a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <span class="icon-fb"><ion-icon name="logo-facebook"></ion-icon>
+                </span>
+                <span class="icon-insta"><ion-icon name="logo-instagram"></ion-icon>
+                </span>
+                <span class="icon-snap"><ion-icon name="logo-snapchat"></ion-icon>
+                </span>
+                <span class="icon-twitt"><ion-icon name="logo-twitter"></ion-icon>
+                </span>
+                <br>
+                <h3>WellNest</h3>
+                <p>2577 XYZ</p>
+                <p>New Delhi, ND 110004</p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <p>Therapy</p>
+                <p>VR Meditation</p>
+                <p>Personality Learning</p>
+                <p>Diet Plan</p>
+                <p>Mood Analysis</p>
+                <p>Therapy for veterans</p>
+                <p>Motivational Quotes</p>
+            </div>
+            <div class="footer-section">
+                <h3>Useful links</h3>
+                <p>TEDTALKS</p>
+                <p>Free mental health tests</p>
+                <p>Customise your Diet Plan</p>
+                <p>WellNest reviews</p>
+            </div>
+            <div class="footer-section">
+                <p id="last">If you are in a life threatening situation - don’t use this site. Call 1800-599-0019 to get immediate help.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="diet.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

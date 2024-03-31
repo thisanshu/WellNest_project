@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WellNest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins' , sans-serif;
+}
+
+header {
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background-color:#263159;
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    z-index: 99;
+}
+body {
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.logo {
+    font-size: 2em;
+    color: #fff;
+    user-select: none;
+
+}
+
+.navigation a {
+position: relative;
+font-size: 1.1em;
+color: #fff;
+font-style:oblique;
+text-decoration: none;
+font-weight: 500;
+margin-left: 40px;
+}
+
+.navigation a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+} 
+
+.navigation a:hover:after {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+ .navigation .btnLogin-popup { 
+    width: 90px;
+    height: 35px;
+    margin: 3.2px;
+    background: transparent;
+    outline: none;
+    padding: 7px 9px;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    font-size: 0.98em;
+    font-weight: 650;
+    color: #fff;
+    margin-left: 30px;
+    justify-content: space-between;
+    transition: .5s;
+}
+
+.navigation .btnLogin-popup:hover{
+   background: #fff; 
+   color: #162938;
+}
+
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background: grey;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease, height 0.2s ease ;
+}
+
+
+.wrapper.active-popup {
+    transform: scale(1);
+  }
+.wrapper.active{
+  height: 520px;
+}
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper .form-box.login {
+  transition: transform .18s ease;
+   transform: translateX(0);
+}
+
+.wrapper.active .form-box.login {
+   transition: none;
+   transform: translateX(-400px);
+}
+
+.wrapper .form-box.register {
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+
+}
+
+.wrapper.active .form-box.register {
+
+}
+
+.wrapper .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 41px;
+    height: 41px;
+    background: #162938;
+    font-size: 1.73em;
+    color: floralwhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+}
+.form-box h2{
+    font-size: 2em;
+    columns: #162938;
+    text-align: center;
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #162938;
+    margin: 30px 0;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #162938;
+    font-weight: 500;
+    pointer-events: none;
+    transition: 0.5s;
+}
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -5px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #162938;
+    font-weight: 600;
+    padding: 0 35px 0 5px;   
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 10px;
+    bottom: 15px;
+    font-size: 1.2em;
+    color: #162938;
+    line-height: 20px;
+}
+
+.remember-forgot {
+    font-size: 0.9em;
+    color: #162938;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.remember-forgot label input {
+    accent-color: #162938;
+    margin-right: 3px;
+}
+
+.remember-forgot a{
+    color: #162938;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    background: rgb(49, 49, 51);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 1em;
+    color: floralwhite;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+.login-register {
+    font-size: 0.9em;
+    color: #162938;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+.login-register p a {
+    color: #162938;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-register p a:hover {
+    text-decoration: underline;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.logo {
+    float: left;
+    font-size: 32px;
+    line-height: 32px;
+    color: #ffffff;
+}
+
+.navigation {
+    float: right;
+    padding: 15px 0;
+    font-size: 18px;
+    line-height: 18px;
+}
+
+.navigation a {
+    color: #ffffff;
+    padding: 15px 20px;
+}
+
+.btnlogin {
+    background: #3693e6;
+    border: transparent;
+    color: #ffffff;
+    padding: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-left: 15px;
+    line-height: 1;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.footer-container {
+    padding: 15px;
+    border-top: 1.5px solid #3693e6;
+    margin: 10px auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-logo {
+    width: 40px;
+    height: 40px;margin: 15px;
+    transition: transform 0.3s;
+}
+
+.footer-logo:hover {
+    transform: translateY(-5px);
+}
+footer {
+    background-image: linear-gradient(to right,rgb(33, 33, 101), rgb(42, 32, 32));
+    padding: 20px 0;
+    color: white;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    margin: 0 10px;
+}
+
+.footer-section h3 {
+    margin-bottom: 10px;
+}
+
+.footer-section p {
+    margin-bottom: 5px;
+}
+#last{
+    text-align:center;
+    margin-top: 1.2em;
+    font-style: italic;
+    margin-left:250px;
+}
+h1{
+    font-size:44px;
+    font-family:'Quarto',sans-serif;
+    color:#263159;
+    text-align:left;
+}
+.head h2{
+    font-size:16px;
+    font-family:'Quarto',sans-serif;
+    line-height:1.2;
+    padding:15px;
+}
+.head p{
+    font-size:16px;
+    font-family:'Times New Roman', Times, serif;
+    padding:15px;
+    line-height:1.2;
+    font-weight: light;
+}
+.policy h2{
+    font-size:24px;
+    font-family:'Quarto' sans-serif;
+    line-height:1.2;
+    padding:15px;
+}
+.policy p{
+    font-size:20px;
+    font-family:'Times New Roman', Times, serif;
+    padding:15px;
+    line-height:1.2;
+}
+#one{
+    margin-top:10%;
+    margin-bottom:60px;
+    text-align:left;
+}
+</style>
+<body>
+    <header>
+        <h2 class="logo"> WellNest </h2>
+        <nav class="navigation">
+            <a href="/WellNest/WellNest.html"> Home </a>
+            <a href="/WellNest/dietplan.html"> Diet Plan</a>
+            <a href="/WellNest/service.html"> Services </a>
+            <a href="/WellNest/Psychology.html">Psychology</a>
+            <a href="/WellNest/aboutus.html">About Us</a>
+            <button class="btnLogin-popup"> Login</button>
+        </nav>
+    </header>
+    <div id="one">
+        <h1>OUR MISSION</h1>
+        <main class="head">
+            <h2>The WellNest Project represents a haven of peace and self-improvement, painstakingly designed for anyone seeking refreshing moments of self-care. "WellNest" represents our intrinsic ability for transformation, development, and resilience. It contains the notion that with compassion, direction, information, and therapeutic intervention, we have the ability to reset our minds and hearts, going on a road of recovery from addiction and emotional misery.</h2>
+            <h2>At its core, the WellNest Project is an endeavor—a collaborative effort aimed at providing crucial instruments for the repair, redefinition, and enrichment of lives. With a deep knowledge of each individual's transforming capacity, the initiative is dedicated to creating a caring atmosphere that promotes personal progress and thriving.</h2>
+            <h2>WellNest shines as a beacon of hope, providing a treasure mine of mental health information and insights that are freely available to everyone who want help and knowledge. It demonstrates the consistent dedication to assisting people on their journeys to comprehensive well-being and self-actualization.</h2>
+        </main>
+        <h1>OUR POLICIES</h1>
+        <div class="policy">
+            <h2>Advertising Policy</h2>
+            <p>WellNest accepts advertising on all of its platforms while adhering to a strict policy that assures a clear and unambiguous distinction between advertising and editorial content. Our staff rigorously ensures that adverts are perfectly placed without interfering with your reading experience. We emphasize displaying adverts in a way that respects your interaction with our content.</p>
+            <h2>Privacy Policy</h2>
+            <p>We respect your online privacy and understand our users' worries. If you want to share information with us, we will gather it, including personal information. When you visit our website, we and our partners may automatically collect information about your visit using techniques such as cookies and web beacons.
+            <br>We may use the information we gather for various purposes, such as replying to your email questions. We may also use information to display advertising, content, and offers based on your browsing history and interests.</p>
+            <h2>Terms of Use</h2> 
+            <p>WellNest.com and its affiliated websites (collectively, the "Site") are trademarks of XYZ, a company owned and operated by About, Inc. and its affiliates (collectively, "WellNest," "the Company," "we," or "us"). This Site and your use of it are subject to the terms and restrictions stated in the "Terms of Use."</p>
+        </div>
+    </div>    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <span class="icon-fb"><ion-icon name="logo-facebook"></ion-icon>
+                </span>
+                <span class="icon-insta"><ion-icon name="logo-instagram"></ion-icon>
+                </span>
+                <span class="icon-snap"><ion-icon name="logo-snapchat"></ion-icon>
+                </span>
+                <span class="icon-twitt"><ion-icon name="logo-twitter"></ion-icon>
+                </span>
+                <br>
+                <h3>WellNest</h3>
+                <p>2577 XYZ</p>
+                <p>New Delhi, ND 110004</p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <p>Therapy</p>
+                <p>VR Meditation</p>
+                <p>Personality Learning</p>
+                <p>Diet Plan</p>
+                <p>Mood Analysis</p>
+                <p>Therapy for veterans</p>
+                <p>Motivational Quotes</p>
+            </div>
+            <div class="footer-section">
+                <h3>Useful links</h3>
+                <p>TEDTALKS</p>
+                <p>Free mental health tests</p>
+                <p>Customise your Diet Plan</p>
+                <p>WellNest reviews</p>
+            </div>
+            <div class="footer-section">
+                <p id="last">If you are in a life threatening situation - don’t use this site. Call 1800-599-0019 to get immediate help.</p>
+            </div>
+        </div>
+    </footer>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
+       
+
+
+    
+  

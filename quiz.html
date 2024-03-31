@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mental Health Quiz</title>
+<style>
+ 
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+  }
+  #logo {
+    max-width: 100px;
+    vertical-align: middle;
+  }
+  h1 {
+    background-color: #66cdaa; /* Medium Aquamarine */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  .question {
+    margin-bottom: 20px;
+  }
+  .options {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  .option {
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  .option:hover {
+    background-color: #e0e0e0;
+  }
+  #result {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+    
+  <header>
+    <img id="logo" src="wellnest_logo.png" alt="WellNest Logo">
+  </header>
+  <h1>Mental Health Quiz</h1>
+  <div class="question" id="question1">
+    <p>1. How often do you feel overwhelmed by daily tasks?</p>
+    <div class="options">
+      <label><input type="radio" name="q1" value="0"> Never</label>
+      <label><input type="radio" name="q1" value="1"> Occasionally</label>
+      <label><input type="radio" name="q1" value="2"> Sometimes</label>
+      <label><input type="radio" name="q1" value="3"> Often</label>
+    </div>
+  </div>
+  <div class="question" id="question2">
+    <p>2. Do you have trouble sleeping?</p>
+    <div class="options">
+      <label><input type="radio" name="q2" value="0"> No</label>
+      <label><input type="radio" name="q2" value="1"> Sometimes</label>
+      <label><input type="radio" name="q2" value="2"> Frequently</label>
+      <label><input type="radio" name="q2" value="3"> Always</label>
+    </div>
+  </div>
+  <div class="question" id="question3">
+    <p>3. How often do you experience feelings of sadness or hopelessness?</p>
+    <div class="options">
+      <label><input type="radio" name="q3" value="0"> Rarely</label>
+      <label><input type="radio" name="q3" value="1"> Occasionally</label>
+      <label><input type="radio" name="q3" value="2"> Sometimes</label>
+      <label><input type="radio" name="q3" value="3"> Frequently</label>
+    </div>
+  </div>
+  <div class="question" id="question4">
+    <p>4. How often do you experience panic or anxiety attacks?</p>
+    <div class="options">
+      <label><input type="radio" name="q4" value="0"> Never</label>
+      <label><input type="radio" name="q4" value="1"> Rarely</label>
+      <label><input type="radio" name="q4" value="2"> Sometimes</label>
+      <label><input type="radio" name="q4" value="3"> Frequently</label>
+    </div>
+  </div>
+  <div class="question" id="question5">
+    <p>5. Do you have difficulty concentrating?</p>
+    <div class="options">
+      <label><input type="radio" name="q5" value="0"> No</label>
+      <label><input type="radio" name="q5" value="1"> Sometimes</label>
+      <label><input type="radio" name="q5" value="2"> Frequently</label>
+      <label><input type="radio" name="q5" value="3"> Always</label>
+    </div>
+  </div>
+  <button onclick="calculateScore()">Submit</button>
+
+  <script>
+    function calculateScore() {
+      let score = 0;
+      const questions = document.querySelectorAll('.question');
+      questions.forEach(question => {
+        const selectedOption = question.querySelector('input[type="radio"]:checked');
+        if (selectedOption) {
+          score += parseInt(selected option.value);
+        }
+      });
+      alert('Your mental health score is: ' + score);
+      let category = '';
+      let advice = '';
+      if (score <= 5) {
+        category = 'Low';
+        advice = 'Your mental health seems to be in good shape. Keep up the positive habits!';
+      } else if (score <= 10) {
+        category = 'Medium';
+        advice = 'Your mental health could use some attention. Consider seeking support or practising self-care.';
+      } else {
+        category = 'High';
+        advice = 'Your mental health needs immediate attention. Please reach out to a mental health professional for support.';
+      }
+      alert('Your mental health score is: ' + score + '\nCategory: ' + category + '\nAdvice: ' + advice);
+       }
+  </script>
+</body>
+</html>

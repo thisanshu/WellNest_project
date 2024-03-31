@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WellNest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins' , sans-serif;
+}
+
+header {
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background-color:#263159;
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    z-index: 99;
+}
+body {
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.logo {
+    font-size: 2em;
+    color: #fff;
+    user-select: none;
+
+}
+
+.navigation a {
+position: relative;
+font-size: 1.1em;
+color: #fff;
+font-style:oblique;
+text-decoration: none;
+font-weight: 500;
+margin-left: 40px;
+}
+
+.navigation a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+} 
+
+.navigation a:hover:after {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+ .navigation .btnLogin-popup { 
+    width: 90px;
+    height: 35px;
+    margin: 3.2px;
+    background: transparent;
+    outline: none;
+    padding: 7px 9px;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    font-size: 0.98em;
+    font-weight: 650;
+    color: #fff;
+    margin-left: 30px;
+    justify-content: space-between;
+    transition: .5s;
+}
+
+.navigation .btnLogin-popup:hover{
+   background: #fff; 
+   color: #162938;
+}
+
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background: grey;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease, height 0.2s ease ;
+}
+
+
+.wrapper.active-popup {
+    transform: scale(1);
+  }
+.wrapper.active{
+  height: 520px;
+}
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper .form-box.login {
+  transition: transform .18s ease;
+   transform: translateX(0);
+}
+
+.wrapper.active .form-box.login {
+   transition: none;
+   transform: translateX(-400px);
+}
+
+.wrapper .form-box.register {
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+
+}
+
+.wrapper.active .form-box.register {
+
+}
+
+.wrapper .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 41px;
+    height: 41px;
+    background: #162938;
+    font-size: 1.73em;
+    color: floralwhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+}
+.form-box h2{
+    font-size: 2em;
+    columns: #162938;
+    text-align: center;
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #162938;
+    margin: 30px 0;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #162938;
+    font-weight: 500;
+    pointer-events: none;
+    transition: 0.5s;
+}
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -5px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #162938;
+    font-weight: 600;
+    padding: 0 35px 0 5px;   
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 10px;
+    bottom: 15px;
+    font-size: 1.2em;
+    color: #162938;
+    line-height: 20px;
+}
+
+.remember-forgot {
+    font-size: 0.9em;
+    color: #162938;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.remember-forgot label input {
+    accent-color: #162938;
+    margin-right: 3px;
+}
+
+.remember-forgot a{
+    color: #162938;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    background: rgb(49, 49, 51);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 1em;
+    color: floralwhite;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+.login-register {
+    font-size: 0.9em;
+    color: #162938;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+.login-register p a {
+    color: #162938;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-register p a:hover {
+    text-decoration: underline;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.logo {
+    float: left;
+    font-size: 32px;
+    line-height: 32px;
+    color: #ffffff;
+}
+
+.navigation {
+    float: right;
+    padding: 15px 0;
+    font-size: 18px;
+    line-height: 18px;
+}
+
+.navigation a {
+    color: #ffffff;
+    padding: 15px 20px;
+}
+
+.btnlogin {
+    background: #3693e6;
+    border: transparent;
+    color: #ffffff;
+    padding: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-left: 15px;
+    line-height: 1;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.footer-container {
+    padding: 15px;
+    border-top: 1.5px solid #3693e6;
+    margin: 10px auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-logo {
+    width: 40px;
+    height: 40px;margin: 15px;
+    transition: transform 0.3s;
+}
+
+.footer-logo:hover {
+    transform: translateY(-5px);
+}
+.bold{
+    font-weight: 800;
+}
+.therapy{
+    text-align: center;
+
+}
+div .one{
+    color:#263159;
+    margin-top:50px;
+    margin-bottom:8%;
+    font-size: 40px;
+    font-style: italic;
+    text-align: center;
+    background:rgb(185, 184, 184);
+    padding: 60px;
+    
+}
+#Welcome{
+    font-family: cursive;
+    font-weight: 500;
+    font-size:20px;
+    text-shadow:#28384f;
+}
+footer {
+    background-image: linear-gradient(to right,rgb(33, 33, 101), rgb(42, 32, 32));
+    padding: 20px 0;
+    color: white;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    margin: 0 10px;
+}
+
+.footer-section h3 {
+    margin-bottom: 10px;
+}
+
+.footer-section p {
+    margin-bottom: 5px;
+}
+#last{
+    text-align:center;
+    margin-top: 1.2em;
+    font-style: italic;
+    margin-left:250px;
+}
+.container{
+    margin-top:3%;
+    font-size:20px;
+    margin-bottom:4%;
+    text-align:left;
+}
+.row{
+    margin-top:5%;
+    display:flex;
+    justify-content: space-between;
+}
+.campus {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 30px;
+    margin-bottom:5%;
+}
+
+.campus-col {
+    flex-basis: 32%;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    z-index: 50;
+}
+
+.campus-col img {
+    width: 100%;
+    display: block;
+}
+
+.layer {
+    background:transparent;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+    position: absolute;
+}
+
+.layer:hover {
+    background: rgba(75, 105, 206, 0.7);
+}
+
+.layer h3 {
+    width: 100%;
+    font-weight: 500;
+    color: white;
+    font-size: 26px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    opacity: 0;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.layer:hover h3 {
+    bottom: 49%;
+    opacity: 1;
+}
+#serve{
+    margin-top:5%;
+    width:1450px;
+    height:400px;
+}
+#ontest h2{
+    font-family:fantasy;
+    color:#263159;
+    text-align:center;
+}
+.test{
+    color:#263159;
+    font-size: 20px;
+    padding:10px;
+    background:rgb(70, 173, 70);
+    font-family: fantasy;
+    align-content: center;
+    border: transparent;
+    margin-left:45%;
+    margin-top: 10px;
+    border-radius: 8%;
+    margin-bottom: 3%;
+}
+#our{
+    font-family: 'Quarto', sans-serif;
+    font-size:44px;
+    color:#263159;
+}
+
+
+</style>
+<body>
+    <header>
+        <h2 class="logo"> WellNest </h2>
+        <nav class="navigation">
+            <a href="/WellNest/WellNest.html"> Home </a>
+            <a href="/WellNest/dietplan.html"> Diet Plan</a>
+            <a href="/WellNest/service.html"> Services </a>
+            <a href="/WellNest/Psychology.html">Psychology</a>
+            <a href="/WellNest/aboutus.html">About Us</a>
+            <button class="btnLogin-popup"> Login</button>
+        </nav>
+    </header>
+    <img src="/WellNest/service.jpg" id="serve">
+    <main class="container">
+        <div>
+            <p>We take great satisfaction in providing innovative services that use technology to advance mental health. Virtual reality (VR) treatment and online mental test analysis are two of our best services; both are essential on the path to recovery and restoration.</p><br>
+            <p>People may learn a great deal about their psychological profile from the comfort of their own homes with our online mental exam analysis. People can identify trends, areas of strength, and opportunities for improvement in their mental health by completing exams that have been scientifically verified.Individuals may use this self-awareness as a valuable tool to better understand themselves, see any problems, and look for focused help and remedies.</p><br>
+            <p>In addition to our research of the online test, we introduce VR therapy, a novel approach to mental health treatment. VR therapy provides a safe, supervised setting for people to address their fears, anxieties, and traumas by submerging them in virtual surroundings. VR treatment offers an engaging and participatory therapeutic intervention option, ranging from mindfulness activities to reduce stress to exposure therapy addressing phobias. By means of realistic virtual world simulations, people can develop coping strategies, fortify their resilience, and experience healing in a profoundly different way.</p><br> 
+        </div>
+        </main>
+        <div id="ontest">
+            <h2> Participate in an online assessment to explore and gain deeper insights into your mental well-being.</h2>
+            <button type="submit" class="test"><a href="/WellNest/quiz.html">ONLINE TEST</a></button>
+        </div>
+    <section class="campus">
+        <h1 id="our">VIRTUAL ROOMS</h1>
+        <div class="row">
+            <div class="campus-col">
+                <img src="/WellNest/meditation.png">
+                <div class="layer">
+                    <a href="/WellNest/meditation.html"><h3>MEDITATION</h3></a>
+                </div>
+            </div>
+            <div class="campus-col">
+                <img src="/WellNest/deepsleep.jpg">
+                <div class="layer">
+                    <a href="/WellNest/sleep.html"><h3>DEEP SLEEP IN SPACE</h3></a>
+                </div>
+            </div>
+            <div class="campus-col">
+                <img src="/WellNest/mystic forest.jpg">
+                <div class="layer">
+                    <a href="/WellNest/hey.html"><h3>MYSTIC FOREST</h3></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">Together with our online evaluation services, we provide VR treatment, a cutting-edge method of promoting mental health. By immersing patients in virtual environments, virtual reality treatment provides a safe haven where traumas, anxieties, and phobias may be courageously faced. VR treatment provides an exciting and revolutionary route to recovery, ranging from customized mindfulness exercises to reduce stress to exposure sessions treating phobias. <br>In these realistic, lifelike simulations, people may develop coping mechanisms, strengthen their resilience, and set off on a path of significant personal development.</div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <span class="icon-fb"><ion-icon name="logo-facebook"></ion-icon>
+                </span>
+                <span class="icon-insta"><ion-icon name="logo-instagram"></ion-icon>
+                </span>
+                <span class="icon-snap"><ion-icon name="logo-snapchat"></ion-icon>
+                </span>
+                <span class="icon-twitt"><ion-icon name="logo-twitter"></ion-icon>
+                </span>
+                <br>
+                <h3>WellNest</h3>
+                <p>2577 XYZ</p>
+                <p>New Delhi, ND 110004</p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <p>Therapy</p>
+                <p>VR Meditation</p>
+                <p>Personality Learning</p>
+                <p>Diet Plan</p>
+                <p>Mood Analysis</p>
+                <p>Therapy for veterans</p>
+                <p>Motivational Quotes</p>
+            </div>
+            <div class="footer-section">
+                <h3>Useful links</h3>
+                <p>TEDTALKS</p>
+                <p>Free mental health tests</p>
+                <p>Customise your Diet Plan</p>
+                <p>WellNest reviews</p>
+            </div>
+            <div class="footer-section">
+                <p id="last">If you are in a life threatening situation - don’t use this site. Call 1800-599-0019 to get immediate help.</p>
+            </div>
+        </div>
+    </footer>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>    

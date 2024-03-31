@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WellNest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins' , sans-serif;
+}
+
+header {
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background-color:#263159;
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    z-index: 99;
+}
+body {
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.logo {
+    font-size: 2em;
+    color: #fff;
+    user-select: none;
+
+}
+
+.navigation a {
+position: relative;
+font-size: 1.1em;
+color: #fff;
+font-style:oblique;
+text-decoration: none;
+font-weight: 500;
+margin-left: 40px;
+}
+
+.navigation a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+} 
+
+.navigation a:hover:after {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+ .navigation .btnLogin-popup { 
+    width: 90px;
+    height: 35px;
+    margin: 3.2px;
+    background: transparent;
+    outline: none;
+    padding: 7px 9px;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    font-size: 0.98em;
+    font-weight: 650;
+    color: #fff;
+    margin-left: 30px;
+    justify-content: space-between;
+    transition: .5s;
+}
+
+.navigation .btnLogin-popup:hover{
+   background: #fff; 
+   color: #162938;
+}
+
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background: grey;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease, height 0.2s ease ;
+}
+
+
+.wrapper.active-popup {
+    transform: scale(1);
+  }
+.wrapper.active{
+  height: 520px;
+}
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper .form-box.login {
+  transition: transform .18s ease;
+   transform: translateX(0);
+}
+
+.wrapper.active .form-box.login {
+   transition: none;
+   transform: translateX(-400px);
+}
+
+.wrapper .form-box.register {
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+
+}
+
+/*.wrapper.active .form-box.register {
+}*/
+
+.wrapper .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 41px;
+    height: 41px;
+    background: #162938;
+    font-size: 1.73em;
+    color: floralwhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+}
+.form-box h2{
+    font-size: 2em;
+    columns: #162938;
+    text-align: center;
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #162938;
+    margin: 30px 0;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #162938;
+    font-weight: 500;
+    pointer-events: none;
+    transition: 0.5s;
+}
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -5px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #162938;
+    font-weight: 600;
+    padding: 0 35px 0 5px;   
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 10px;
+    bottom: 15px;
+    font-size: 1.2em;
+    color: #162938;
+    line-height: 20px;
+}
+
+.remember-forgot {
+    font-size: 0.9em;
+    color: #162938;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.remember-forgot label input {
+    accent-color: #162938;
+    margin-right: 3px;
+}
+
+.remember-forgot a{
+    color: #162938;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    background: rgb(49, 49, 51);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 1em;
+    color: floralwhite;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+.login-register {
+    font-size: 0.9em;
+    color: #162938;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+.login-register p a {
+    color: #162938;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-register p a:hover {
+    text-decoration: underline;
+}
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.logo {
+    float: left;
+    font-size: 32px;
+    line-height: 32px;
+    color: #ffffff;
+}
+
+.navigation {
+    float: right;
+    padding: 15px 0;
+    font-size: 18px;
+    line-height: 18px;
+}
+
+.navigation a {
+    color: #ffffff;
+    padding: 15px 20px;
+}
+
+.btnlogin {
+    background: #3693e6;
+    border: transparent;
+    color: #ffffff;
+    padding: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-left: 15px;
+    line-height: 1;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.footer-container {
+    padding: 15px;
+    border-top: 1.5px solid #3693e6;
+    margin: 10px auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-logo {
+    width: 40px;
+    height: 40px;margin: 15px;
+    transition: transform 0.3s;
+}
+
+.footer-logo:hover {
+    transform: translateY(-5px);
+}
+.bold{
+    font-weight: 800;
+}
+.therapy{
+    text-align: center;
+
+}
+div .one{
+    color:#263159;
+    margin-top:50px;
+    margin-bottom:8%;
+    font-size: 40px;
+    font-style: italic;
+    text-align: center;
+    background:rgb(185, 184, 184);
+    padding: 60px;
+    
+}
+#Welcome{
+    font-family: cursive;
+    font-weight: 500;
+    font-size:20px;
+    text-shadow:#28384f;
+}
+footer {
+    background-image: linear-gradient(to right,rgb(33, 33, 101), rgb(42, 32, 32));
+    padding: 20px 0;
+    color: white;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    margin: 0 10px; 
+}
+
+.footer-section h3 {
+    margin-bottom: 10px;
+}
+
+.footer-section p {
+    margin-bottom: 5px;
+}
+#last{
+    text-align:center;
+    margin-top: 1.2em;
+    font-style: italic;
+    margin-left:250px;
+}
+#head{
+    margin-top:6%;
+    margin-bottom:3%;
+    height:500px;
+    width:1500px;
+}
+#myers{
+    height:500px;
+    width:1000px;
+    margin-left:15%;
+    margin-bottom:40px;
+}
+main p{
+    line-height: 1.2;
+    font-size: large;
+    margin-top:25px;
+}
+h2{
+    font-size: large;
+    font-weight: lighter;
+    margin-bottom:1%;
+}
+h3{
+    font-size:large;
+    font-weight:700;
+    margin-bottom:2%;
+}
+ul{
+    list-style: disc;
+    font-size: large;
+}
+span{
+    font-style: italic;
+    font-weight: 700;
+}
+.contains{
+    padding:10px;
+}
+#pt{
+    font-family:'Quarto',sans-serif;
+    font-weight: 800;
+    font-size: 40px;
+    margin-bottom:20px;
+    margin-top:20px;
+    text-align: center;
+    text-decoration: underline;
+}
+.main{
+    background: rgb(149, 187, 149);
+    padding:30px;
+    margin-bottom:3%;
+}
+</style>
+<body>
+    <header>
+        <h2 class="logo"> WellNest </h2>
+        <nav class="navigation">
+            <a href="/WellNest/WellNest.html"> Home </a>
+            <a href="/WellNest/dietplan.html"> Diet Plan</a>
+            <a href="/WellNest/service.html"> Services </a>
+            <a href="/WellNest/Psychology.html">Psychology</a>
+            <a href="/WellNest/aboutus.html">About Us</a>
+            <button class="btnLogin-popup"> Login</button>
+        </nav>
+    </header>
+    <img src="/WellNest/psyc img.jpg" id="head">
+    <main class="contains">
+        <div class="psyc">
+            <h2>Psychology, as the exploration of the human mind, serves as the foundation for various mental health interventions, notably psychotherapy. It encompasses an understanding of our actions, feelings, interpersonal connections, individual characteristics, and a plethora of other aspects.</h2>
+            <h3>Lets learn more about Personality Types:</h3>
+        </div>
+        <hr>
+        <div class="main">
+            <div id="pt">Myers-Briggs-Personality-Types</div>
+            <p>Have you ever come across someone who was adamantly identifying as an INTJ or an ESTP and been captivated by the mysterious initials they carried? In reality, though, what they're revealing is their personality type, which is based on the intriguing domain of the Myers-Briggs Type Indicator (MBTI).<br>
+                Imagine exploring the depths of your mind to discover the complex web of your traits, tendencies, and personality. Exactly what Carl Jung's theory of personality types suggests, the Myers-Briggs Personality Type Indicator is a voyage of self-discovery created by Isabel Myers and Katherine Briggs. It is now regarded as one of the most extensively used psychological tools in the world.<br>
+                Let's go back to the beginning of this creative evaluation. Imagine a moment in World War II when Briggs and Myers set out to unravel the intricate web of personal distinctions. Driven by the need to direct individuals toward careers that aligned with their innate qualities, they painstakingly developed the MBTI, creating the initial paper version in the 1940s.<br>
+                After decades of development, you finally reach the core of the issue: the MBTI's 16 unique personality types represent its fundamental components. Respondents go on a self-exploration journey through a series of thought-provoking questions, revealing the nuances of their character, from likes and dislikes to strengths and flaws.</p>
+            <p>Now, let's journey through the four enchanting scales that compose this mystical questionnaire:</p>
+            <ul>
+                <li>First up, we have the captivating dance between <span>Extraversion (E) and Introversion (I)</span>, echoing Jung's musings on how individuals engage with the world. Picture extraverts, those spirited souls, basking in the limelight of social interactions, while introverts, the contemplative spirits, find solace in the sanctuary of their thoughts.</li>
+                <li>Next, we delve into the realm of <span>Sensing (S) and Intuition (N)</span>, where individuals navigate the labyrinth of information gathering. Here, the grounded realists, attuned to sensory stimuli, contrast with the dreamy idealists, weaving tales of future possibilities and abstract musings.</li>
+                <li>Then, behold the grand showdown between <span>Thinking (T) and Feeling (F)</span>, where decisions are crafted amidst the swirling seas of logic and emotion. Witness the rational thinkers, guided by cold, hard facts, as they clash with the compassionate feelers, sculpting their choices with empathy and heart.</li>
+                <li>Finally, we arrive at the realm of <span>Judging (J) and Perceiving (P)</span>, where individuals chart their course through the bustling landscape of external interactions. Picture the meticulous planners, craving order and structure, juxtaposed with the spontaneous adventurers, dancing to the rhythm of unpredictability.</li>
+            </ul>
+            <p>There are no victors or losers, right or wrong in this amazing voyage of self-discovery—only the vast array of human nature that is just waiting to be discovered. Accept the enigma and allow your personality type's captivating tunes to lead you on your journey to self-discovery.</p>
+        </div>    
+    </main>
+    <img src="/WellNest/Myers-Briggs-Personality-Types.jpg" id="myers">
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <span class="icon-fb"><ion-icon name="logo-facebook"></ion-icon>
+                </span>
+                <span class="icon-insta"><ion-icon name="logo-instagram"></ion-icon>
+                </span>
+                <span class="icon-snap"><ion-icon name="logo-snapchat"></ion-icon>
+                </span>
+                <span class="icon-twitt"><ion-icon name="logo-twitter"></ion-icon>
+                </span>
+                <br>
+                <h3>WellNest</h3>
+                <p>2577 XYZ</p>
+                <p>New Delhi, ND 110004</p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <p>Therapy</p>
+                <p>VR Meditation</p>
+                <p>Personality Learning</p>
+                <p>Diet Plan</p>
+                <p>Mood Analysis</p>
+                <p>Therapy for veterans</p>
+                <p>Motivational Quotes</p>
+            </div>
+            <div class="footer-section">
+                <h3>Useful links</h3>
+                <p>TEDTALKS</p>
+                <p>Free mental health tests</p>
+                <p>Customise your Diet Plan</p>
+                <p>WellNest reviews</p>
+            </div>
+            <div class="footer-section">
+                <p id="last">If you are in a life threatening situation - don’t use this site. Call 1800-599-0019 to get immediate help.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>    
+</html>
